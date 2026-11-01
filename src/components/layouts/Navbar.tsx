@@ -47,10 +47,13 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop only: the mobile menu has no "Let's talk" button */}
-        <ButtonLink href={site.mailto} size="sm" shape="hex" className="hidden lg:inline-flex">
-          Let&rsquo;s talk
-        </ButtonLink>
+        {/* Desktop only. Hidden on this wrapper, not on ButtonLink: ButtonLink's own
+            "inline-flex" class conflicts with a "hidden" passed in, so the button leaked onto mobile. */}
+        <div className="hidden lg:block">
+          <ButtonLink href={site.mailto} size="sm" shape="hex">
+            Let&rsquo;s talk
+          </ButtonLink>
+        </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
           {/* SheetTrigger renders the <button> itself, so no nested button */}
