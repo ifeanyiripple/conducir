@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import HeroSlider from '@/components/sections/HeroSlider';
 import HexText from '@/components/ui/HexText';
 import Container from '@/components/ui/Container';
 import ButtonLink from '@/components/ui/ButtonLink';
@@ -14,14 +14,7 @@ export default function Hero() {
       // At least the screen minus the navbar (4.5rem mobile, 5rem desktop); grows instead of clipping if content is taller
       className="relative isolate flex min-h-[max(560px,calc(100svh-4.5rem))] items-end overflow-clip bg-ink-deep lg:min-h-[max(560px,calc(100svh-5rem))]"
     >
-      <Image
-        src="/images/hero-interior.jpg"
-        alt="Overhead view of a warmly lit living room with sofas, a rug and pendant lamps"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-20 object-cover"
-      />
+      <HeroSlider />
       <div className="absolute inset-0 -z-10 bg-linear-to-t from-ink-deep via-ink-deep/60 to-ink-deep/25" />
       <div className="absolute inset-0 -z-10 bg-linear-to-r from-ink-deep/75 via-ink-deep/20 to-transparent" />
       <GhostHex className="-right-24 top-6 w-[460px] text-gold/[0.22] lg:-right-16 lg:w-[680px]" />

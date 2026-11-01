@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from 'lucide-react';
@@ -8,7 +9,6 @@ import Logo from '@/components/ui/Logo';
 import ButtonLink from '@/components/ui/ButtonLink';
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -18,6 +18,7 @@ import {
 import { navLinks, site } from '@/lib/site';
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -46,24 +47,24 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* Desktop only: the mobile menu has no "Let's talk" button */}
         <ButtonLink href={site.mailto} size="sm" shape="hex" className="hidden lg:inline-flex">
           Let&rsquo;s talk
         </ButtonLink>
 
-        <Sheet>
-          <SheetTrigger>
-            <button
-              type="button"
-              aria-label="Open menu"
-              className="flex size-11 shrink-0 items-center justify-center text-gold lg:hidden"
-            >
-              <Menu className="size-8" strokeWidth={2} aria-hidden="true" />
-            </button>
+        <Sheet open={open} onOpenChange={setOpen}>
+          {/* SheetTrigger renders the <button> itself, so no nested button */}
+          <SheetTrigger
+            aria-label="Open menu"
+            className="flex size-11 shrink-0 items-center justify-center text-gold lg:hidden"
+          >
+            <Menu className="size-8" strokeWidth={2} aria-hidden="true" />
           </SheetTrigger>
 
+          {/* Full screen: override the Sheet's default 3/4 width and max-w-sm */}
           <SheetContent
             side="right"
-            className="w-full gap-0 border-white/10 bg-ink p-0 text-white sm:max-w-sm [&>button]:text-gold [&>button]:opacity-100"
+            className="inset-0 h-dvh w-full max-w-none gap-0 border-0 bg-ink p-0 text-white sm:max-w-none [&>button]:right-6 [&>button]:top-6 [&>button]:text-gold [&>button]:opacity-100 [&>button_svg]:size-7"
           >
             <SheetHeader className="h-[4.5rem] justify-center border-b border-white/10 px-6">
               <SheetTitle className="font-label text-[0.68rem] font-normal uppercase tracking-[0.18em] text-white/60">
@@ -74,23 +75,19 @@ export default function Navbar() {
 
             <nav className="flex flex-1 flex-col overflow-y-auto px-6 py-4" aria-label="Mobile navigation">
               {navLinks.map((link) => (
-                <SheetClose key={link.href}>
-                  <Link
-                    href={link.href}
-                    aria-current={isCurrent(link.href) ? 'page' : undefined}
-                    className={`border-b border-white/10 py-4 font-display text-xl font-bold uppercase tracking-tight ${
-                      isCurrent(link.href) ? 'text-gold' : 'text-white'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </SheetClose>
+                // Closed through state so the Link stays a plain anchor (no button wrapped around it)
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isCurrent(link.href) ? 'page' : undefined}
+                  className={`border-b border-white/10 py-5 font-display text-2xl font-bold uppercase tracking-tight ${
+                    isCurrent(link.href) ? 'text-gold' : 'text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
               ))}
-              <SheetClose>
-                <ButtonLink href={site.mailto} className="mt-6">
-                  Let&rsquo;s talk
-                </ButtonLink>
-              </SheetClose>
             </nav>
           </SheetContent>
         </Sheet>
