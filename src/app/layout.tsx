@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
-import { Michroma, Orbitron, Poppins } from 'next/font/google';
+import { Michroma, Orbitron, Poppins, Geist } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layouts/Navbar';
 import Footer from '@/components/layouts/Footer';
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 
 // Body copy: Poppins. Headings: Orbitron (closest match to the heavy extended
 // headings in the company profile). Small labels: Michroma, as in the profile.
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${orbitron.variable} ${michroma.variable}`}>
+    <html lang="en" className={cn(poppins.variable, orbitron.variable, michroma.variable, "font-sans", geist.variable)}>
       <body className="font-sans antialiased">
         <Navbar />
         <main>{children}</main>

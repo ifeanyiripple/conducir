@@ -1,15 +1,23 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Logo from '@/components/ui/Logo';
 import ButtonLink from '@/components/ui/ButtonLink';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { navLinks, site } from '@/lib/site';
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -17,8 +25,11 @@ export default function Navbar() {
   return (
     <header id="top" className="sticky top-0 z-50 border-b border-white/10 bg-ink text-white">
       {/* Height must match the offset used in Hero (4.5rem mobile, 5rem desktop) */}
-      <Container className="flex h-[4.5rem] items-center justify-between lg:h-20">
-        <Logo light />
+      <Container className="flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
+        {/* min-w-0 lets the logo give way on narrow phones so it can never push the menu button out of view */}
+        <div className="min-w-0">
+          <Logo light />
+        </div>
 
         <nav className="hidden items-center gap-10 xl:gap-12 lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
@@ -39,40 +50,51 @@ export default function Navbar() {
           Let&rsquo;s talk
         </ButtonLink>
 
-        <button
-          type="button"
-          className="flex size-11 flex-col items-center justify-center gap-2 lg:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-        >
-          <span className={`h-0.5 w-7 bg-gold transition-transform ${open ? 'translate-y-1.25 rotate-45' : ''}`} />
-          <span className={`h-0.5 w-7 bg-gold transition-transform ${open ? '-translate-y-1.25 -rotate-45' : ''}`} />
-        </button>
-      </Container>
+        <Sheet>
+          <SheetTrigger>
+            <button
+              type="button"
+              aria-label="Open menu"
+              className="flex size-11 shrink-0 items-center justify-center text-gold lg:hidden"
+            >
+              <Menu className="size-8" strokeWidth={2} aria-hidden="true" />
+            </button>
+          </SheetTrigger>
 
-      {open && (
-        <nav className="border-t border-white/10 bg-ink lg:hidden" aria-label="Mobile navigation">
-          <Container className="flex flex-col py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                aria-current={isCurrent(link.href) ? 'page' : undefined}
-                className={`border-b border-white/10 py-4 font-display text-xl font-bold uppercase tracking-tight ${
-                  isCurrent(link.href) ? 'text-gold' : 'text-white'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <ButtonLink href={site.mailto} className="mt-6">
-              Let&rsquo;s talk
-            </ButtonLink>
-          </Container>
-        </nav>
-      )}
+          <SheetContent
+            side="right"
+            className="w-full gap-0 border-white/10 bg-ink p-0 text-white sm:max-w-sm [&>button]:text-gold [&>button]:opacity-100"
+          >
+            <SheetHeader className="h-[4.5rem] justify-center border-b border-white/10 px-6">
+              <SheetTitle className="font-label text-[0.68rem] font-normal uppercase tracking-[0.18em] text-white/60">
+                Menu
+              </SheetTitle>
+              <SheetDescription className="sr-only">Main site navigation</SheetDescription>
+            </SheetHeader>
+
+            <nav className="flex flex-1 flex-col overflow-y-auto px-6 py-4" aria-label="Mobile navigation">
+              {navLinks.map((link) => (
+                <SheetClose key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={isCurrent(link.href) ? 'page' : undefined}
+                    className={`border-b border-white/10 py-4 font-display text-xl font-bold uppercase tracking-tight ${
+                      isCurrent(link.href) ? 'text-gold' : 'text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </SheetClose>
+              ))}
+              <SheetClose>
+                <ButtonLink href={site.mailto} className="mt-6">
+                  Let&rsquo;s talk
+                </ButtonLink>
+              </SheetClose>
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </Container>
     </header>
   );
 }
