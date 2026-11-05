@@ -55,7 +55,7 @@ export default function About() {
 
   return (
     <section id="about" className="relative scroll-mt-20 overflow-clip bg-sand py-20 lg:py-28">
-      <GhostHex className="-left-44 -top-24 w-[560px] text-ink/[0.06] lg:w-[760px]" />
+      <GhostHex className="-left-44 -top-24 w-[560px] text-ink/[0.2] lg:w-[760px]" />
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         {/* The six sided polygon is one of the shapes this blob morphs through
@@ -75,12 +75,12 @@ export default function About() {
         </SlideIn>
 
         <SlideIn from="right" delay={0.15}>
-
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[0]}</p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[1]}</p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[2]}</p>
-
-          <div className="mt-10">
+        <div className='text-center '>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[0]}</p>
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[1]}</p>
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[2]}</p>
+         </div>
+          <div className="mt-15">
             <ButtonLink href="/about" variant="dark" shape="hex" size="lg">
               Learn more
             </ButtonLink>
