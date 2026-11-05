@@ -75,30 +75,14 @@ export default function About() {
         </SlideIn>
 
         <SlideIn from="right" delay={0.15}>
-          <Eyebrow>About Conducir</Eyebrow>
-          <HexText
-            as="h2"
-            className="mt-6 max-w-[16ch] font-display text-[clamp(1.75rem,3.6vw,3.25rem)] font-extrabold uppercase leading-[1.05] tracking-[-0.01em]"
-          >
-            Tomorrow’s buildings, built t[O]day.
-          </HexText>
+        
+         
 
-          <p className="mt-8 max-w-xl text-lg font-medium leading-relaxed">{aboutParagraphs[0]}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[0]}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[1]}</p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[1]}</p>
 
-          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-3" aria-label="Our three pillars">
-            {services.map((service) => (
-              <li key={service.id}>
-                <Link
-                  href={`/services#${service.id}`}
-                  className="group flex items-center gap-3 font-label text-[0.66rem] uppercase tracking-[0.2em] text-ink transition-colors hover:text-gold-deep"
-                >
-                  <span aria-hidden="true" className="block h-[14px] w-[12px] bg-gold" style={{ clipPath: HEX }} />
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          
 
           <div className="mt-10">
             <ButtonLink href="/about" variant="dark" shape="hex" size="lg">

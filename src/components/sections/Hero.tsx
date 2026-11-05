@@ -119,7 +119,11 @@ export default function Hero() {
         }
       `}</style>
 
-      <div className="relative h-[85vh] min-h-[750px] w-full bg-black max-[1199px]:min-h-[700px] max-[991px]:min-h-[620px] max-[767px]:min-h-[480px] max-[519px]:min-h-[380px]">
+      {/*
+        On phones the hero fills the whole screen. svh is the visible height with the
+        browser bars showing, so the bottom arrow is never hidden behind them.
+      */}
+      <div className="relative h-[85vh] min-h-[750px] w-full bg-black max-[1199px]:min-h-[700px] max-[991px]:min-h-[620px] max-[767px]:h-[100svh] max-[767px]:min-h-[480px] max-[519px]:min-h-[380px]">
         {/*
           Background video: kept at its native size (no stretching / cover) and
           centered horizontally and vertically inside the hero.
