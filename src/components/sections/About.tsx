@@ -10,7 +10,7 @@ import SlideIn from '@/components/ui/SlideIn';
 import Eyebrow from '@/components/ui/Eyebrow';
 import GhostHex from '@/components/ui/GhostHex';
 import { HEX } from '@/lib/hex';
-import { aboutParagraphs, services } from '@/lib/site';
+import { homeAboutParagraphs, services } from '@/lib/site';
 
 /* MorphFrame takes a fixed pixel size rather than scaling fluidly, so the size
    is picked on the client for the current screen width. */
@@ -75,14 +75,10 @@ export default function About() {
         </SlideIn>
 
         <SlideIn from="right" delay={0.15}>
-        
-         
 
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[0]}</p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[1]}</p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{aboutParagraphs[1]}</p>
-
-          
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[0]}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[1]}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">{homeAboutParagraphs[2]}</p>
 
           <div className="mt-10">
             <ButtonLink href="/about" variant="dark" shape="hex" size="lg">

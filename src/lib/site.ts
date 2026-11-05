@@ -33,6 +33,14 @@ export const aboutParagraphs = [
   'Our business is anchored on three core pillars: Real Estate, Infrastructure and Investments. Together, these pillars express our ambition to contribute to the built environment while creating opportunities for sustainable growth and long-term value.',
 ];
 
+/* Homepage about section: three paragraphs adapted from the reference text.
+   Kept separate so aboutParagraphs stays untouched for any page that uses it. */
+export const homeAboutParagraphs = [
+  'Conducir Engineering Limited has advanced a tradition of excellence and integrity in the Nigerian engineering, construction and real estate industry.',
+  'When you begin the exciting process of building with Conducir Engineering Limited, it’s all about you. Every hope. Every dream. Every day our team will rise to the challenge of making your vision come to life.',
+  'From the first sketch to the day your project is handed over and beyond, we remain your loyal advocates and stewards of your most precious resources: your time, your budget and your peace of mind. That’s Tomorrow Built Today.',
+];
+
 export const whoWeAre = [
   'We are a built-environment company focused on the planning, development and delivery of buildings, infrastructure and real estate opportunities.',
   'We bring together engineering knowledge, construction expertise, project coordination and a forward-looking approach to development. Our goal is to ensure that every project is guided by clear objectives, practical thinking, quality workmanship and an understanding of its long-term purpose.',
