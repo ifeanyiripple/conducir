@@ -5,6 +5,10 @@ import Navbar from '@/components/layouts/Navbar';
 import Footer from '@/components/layouts/Footer';
 import { cn } from "@/lib/utils";
 
+
+
+// then on <html> or <body>:
+// <html lang="en" className={michroma.variable}>
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 
@@ -31,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={cn(poppins.variable, orbitron.variable, michroma.variable, "font-sans", geist.variable)}>
       <body className="font-sans antialiased">
-        <Navbar />
+        {/* <Navbar /> */}
         <main>{children}</main>
         <Footer />
       </body>
