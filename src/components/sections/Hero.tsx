@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "../ui/Logo";
 
 // Video file must be inside the /public folder. Change the name here if yours differs.
-const VIDEO_SRC = "/hero.webm";
+const VIDEO_SRC = "/hero.mp4";
 const POSTER_SRC = "/hero.jpeg";
 
 type NavChild = { label: string; href: string };
